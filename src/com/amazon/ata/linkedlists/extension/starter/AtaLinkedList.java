@@ -34,7 +34,15 @@ public class AtaLinkedList implements ProfileableList {
 
     @Override
     public void addFirst(final Double data) {
-        throw new UnsupportedOperationException();
+        AtaNode newNode = new AtaNode(data, null);
+        if (this.head == null) { //empty link list
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            newNode.setNext(this.head);
+            this.head = newNode;
+        }
+        this.size++;
     }
 
     @Override
@@ -53,12 +61,19 @@ public class AtaLinkedList implements ProfileableList {
 
     @Override
     public Double getFirst() {
-        throw new UnsupportedOperationException();
+        return this.head.getData();
+        // throw new UnsupportedOperationException();
     }
 
     @Override
     public Double getMiddle() {
-        throw new UnsupportedOperationException();
+        int mid = this.size / 2;
+        AtaNode currentNode = this.head;
+        for(int i = 0 ; i < mid ; i++ ){
+            currentNode = currentNode.getNext();
+        }
+        return currentNode.getData();
+        //throw new UnsupportedOperationException();
     }
 
     @Override
